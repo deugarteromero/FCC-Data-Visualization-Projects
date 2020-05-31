@@ -8,3 +8,8 @@
 * Heat Map
 * Choropleth Map
 * Treemap Diagram
+
+Legend
+-------:|-------
+_complete_ | &#x1F4D7;
+_in-progress_ | &#x1F4D9;
