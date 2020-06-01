@@ -21,6 +21,9 @@ body {
 .plot {
   fill: red;
 }
+.hoverEffect {
+  fill: lightgreen; /* Change Color*/
+}
 .title {
   font-size: 1.85rem;
   font-weight: 400;
@@ -39,4 +42,20 @@ body {
 .legendLabel {
   font-size: .85rem;
   text-anchor: end;
+}
+#tooltip {
+  position: absolute;
+  top: calc(100% - 200px);
+  left: 90px;
+
+  padding: .5rem 1rem;
+  background-color: #9BB1C6;
+  box-shadow: 0 0 5px #000000;
+  border-radius: 3px;
+  opacity: .85;
+}
+
+/* Misc */
+.noVisibility {
+  visibility: hidden;
 }

@@ -61,9 +61,12 @@ function drawChart(){
                         const Seconds = data.Seconds - (Minutes * 60);
                         return new Date(2020, 4, 31, 5, Minutes, Seconds);
                       })
+                     .attr("data-name", (data) => data.Name)
+                     .attr("data-doping", (data) => data.Doping)
+                     .attr("data-nationality", (data) => data.Nationality)
+                     .attr("data-time", (data) => data.Time)
+                     .attr("data-year", (data) => data.Year)
                      .attr("r", 5);
-
-                     console.log(dataset);
 
   //Axis Setup
   const xAxis = d3.axisBottom(xScale);
@@ -101,6 +104,7 @@ function drawChart(){
        .text("Time in Minutes");
 
   chart.append("text")
+       .attr("id", "legend") //Pass fccTest
        .attr("x", w - xPadding)
        .attr("y", h / 2)
        .classed("legendLabel", true)
@@ -111,4 +115,63 @@ function drawChart(){
        .attr("y", (h / 2) + 20)
        .classed("legendLabel", true)
        .text("Riders with Doping Allegations");
+
+  drawTooltip();
+};
+
+//Tooltip Component
+const tooltipElement = document.createElement('div');
+const textOne = document.createElement('p');
+const textTwo = document.createElement('p');
+const textThree = document.createElement('p');
+tooltipElement.appendChild(textOne);
+tooltipElement.appendChild(textTwo);
+tooltipElement.appendChild(textThree);
+tooltipElement.setAttribute("id", "tooltip");
+tooltipElement.setAttribute("class", "noVisibility");
+//Append tooltip to body
+const divContainer = document.getElementsByTagName('div')[0];
+divContainer.appendChild(tooltipElement);
+//Selection for tooltip
+const tooltip = document.getElementById('tooltip');
+
+function drawTooltip(){
+  //Get xPos from svg container to determine tooltip x position of bars
+  const posSVG = document.getElementsByTagName('svg')[0].getBoundingClientRect();
+  const xPosSVG = posSVG.x;
+  const yPosSVG = posSVG.y;
+
+  const plotsArray = document.querySelectorAll('.plot');
+  for(const el of plotsArray){
+    el.addEventListener('mouseenter', () => {
+      el.classList.add('hoverEffect');
+
+      tooltip.setAttribute("data-year", el.dataset.year); //Pass Test #TooltipTests 2 of FCC, Even though it does not affect actual function of chart
+
+      //Update tooltip Data
+      const updatedParagraph1 = document.createElement('p');
+      updatedParagraph1.appendChild(document.createTextNode(`${el.dataset.name}: ${el.dataset.nationality}`));
+      tooltipElement.replaceChild(updatedParagraph1, tooltipElement.childNodes[0]);
+
+      const updatedParagraph2 = document.createElement('p');
+      updatedParagraph2.appendChild(document.createTextNode(`Year: ${el.dataset.xvalue}, Time: ${el.dataset.time}`));
+      tooltipElement.replaceChild(updatedParagraph2, tooltipElement.childNodes[1]);
+
+      const updatedParagraph3 = document.createElement('p');
+      updatedParagraph3.appendChild(document.createTextNode(`${el.dataset.doping}`));
+      tooltipElement.replaceChild(updatedParagraph3, tooltipElement.childNodes[2]);
+
+      //Show tooltip @Desired x Position
+      let xPos = Math.round(el.getBoundingClientRect().x);
+      let yPos = Math.round(el.getBoundingClientRect().y);
+      tooltip.classList.remove('noVisibility');
+      tooltip.style.top = `${(yPos - 33)}px`;
+      tooltip.style.left = `${xPos + 15}px`;
+
+    });
+    el.addEventListener('mouseleave', () => {
+      el.classList.remove('hoverEffect');
+      tooltip.classList.add('noVisibility');
+    });
+  };
 };
