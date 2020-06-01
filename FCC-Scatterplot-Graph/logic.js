@@ -136,11 +136,6 @@ divContainer.appendChild(tooltipElement);
 const tooltip = document.getElementById('tooltip');
 
 function drawTooltip(){
-  //Get xPos from svg container to determine tooltip x position of bars
-  const posSVG = document.getElementsByTagName('svg')[0].getBoundingClientRect();
-  const xPosSVG = posSVG.x;
-  const yPosSVG = posSVG.y;
-
   const plotsArray = document.querySelectorAll('.plot');
   for(const el of plotsArray){
     el.addEventListener('mouseenter', () => {
@@ -160,6 +155,10 @@ function drawTooltip(){
       const updatedParagraph3 = document.createElement('p');
       updatedParagraph3.appendChild(document.createTextNode(`${el.dataset.doping}`));
       tooltipElement.replaceChild(updatedParagraph3, tooltipElement.childNodes[2]);
+
+      if(el.dataset.doping === ""){
+        
+      };
 
       //Show tooltip @Desired x Position
       let xPos = Math.round(el.getBoundingClientRect().x);
