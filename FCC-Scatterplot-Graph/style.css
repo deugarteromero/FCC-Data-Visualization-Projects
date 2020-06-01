@@ -13,3 +13,8 @@ body {
 }
 
 /* D3 Bar Chart Component Designs */
+.design {
+  display: inline-block;
+  background-color: #FFFFFF;
+  box-shadow: 0 0 20px #000000;
+}
