@@ -16,18 +16,17 @@ function drawChart(){
   const yPadding = 90;
 
   //Scale Setup
-  const xMaxValue = d3.max(dataset, (data) => data.Year );
-  const xMinValue = d3.min(dataset, (data) => data.Year );
-
-  const yMaxValue = d3.max(dataset, (data) => (data.Seconds / 60) );
-  console.log(Number(yMaxValue.toFixed(2)));
-
-  const xScale = d3.scaleLinear()
+    //Offset +/- 1 Year for Readability
+  const xMaxValue = d3.max(dataset, (data) => new Date(data.Year + 1, 0, 1) );
+  const xMinValue = d3.min(dataset, (data) => new Date(data.Year - 1, 0, 1) );
+  const xScale = d3.scaleTime()
                    .domain([xMinValue, xMaxValue])
                    .range([xPadding, w - xPadding]);
 
+  const yMaxValue = d3.max(dataset, (data) => (data.Seconds / 60) );
+  const yMinValue = d3.min(dataset, (data) => (data.Seconds / 60) );
   const yScale = d3.scaleLinear()
-                   .domain([0, Number(yMaxValue.toFixed(2))])
+                   .domain([ Number(yMaxValue.toFixed(2)), Number(yMinValue.toFixed(2)) ])
                    .range([h - yPadding, yPadding]);
 
   //Chart Setup
@@ -41,10 +40,22 @@ function drawChart(){
                      .enter()
                      .append("circle")
                      .classed("plot", true)
-                     .attr("cx", (data) => xScale(data.Year) ) //C
+                     .attr("cx", (data) => xScale(new Date(data.Year, 0, 1)) ) //C
                      .attr("cy", (data) => yScale(data.Seconds / 60) ) //C
-                     .attr("r", 5); //C
+                     .attr("r", 5);
+
+  //Axis Setup
+  const xAxis = d3.axisBottom(xScale);
+  chart.append("g")
+        .attr("id", "x-axis")
+        .attr("transform", "translate(0, " + (h - yPadding) + ")")
+        .call(xAxis);
+
+  const yAxis = d3.axisLeft(yScale);
+  chart.append("g")
+        .attr("id", "y-axis")
+        .attr("transform", "translate(" + xPadding + ", 0)")
+        .call(yAxis);
 
 
-  console.log(dataset);
 };
