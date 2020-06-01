@@ -23,10 +23,18 @@ function drawChart(){
                    .domain([xMinValue, xMaxValue])
                    .range([xPadding, w - xPadding]);
 
-  const yMaxValue = d3.max(dataset, (data) => (data.Seconds / 60) );
-  const yMinValue = d3.min(dataset, (data) => (data.Seconds / 60) );
-  const yScale = d3.scaleLinear()
-                   .domain([ Number(yMaxValue.toFixed(2)), Number(yMinValue.toFixed(2)) ])
+  const yMaxValue = d3.max(dataset, (data) => {
+    const Minutes = Math.floor(data.Seconds / 60);
+    const Seconds = data.Seconds - (Minutes * 60);
+    return new Date(2020, 4, 31, 5, Minutes, Seconds);
+  });
+  const yMinValue = d3.min(dataset, (data) => {
+    const Minutes = Math.floor(data.Seconds / 60);
+    const Seconds = data.Seconds - (Minutes * 60);
+    return new Date(2020, 4, 31, 5, Minutes, Seconds);
+  });
+  const yScale = d3.scaleTime()
+                   .domain([yMaxValue, yMinValue])
                    .range([h - yPadding, yPadding]);
 
   //Chart Setup
@@ -40,8 +48,12 @@ function drawChart(){
                      .enter()
                      .append("circle")
                      .classed("plot", true)
-                     .attr("cx", (data) => xScale(new Date(data.Year, 0, 1)) ) //C
-                     .attr("cy", (data) => yScale(data.Seconds / 60) ) //C
+                     .attr("cx", (data) => xScale(new Date(data.Year, 0, 1)) )
+                     .attr("cy", (data) => {
+                        const Minutes = Math.floor(data.Seconds / 60);
+                        const Seconds = data.Seconds - (Minutes * 60);
+                        return yScale(new Date(2020, 4, 31, 5, Minutes, Seconds));
+                      })
                      .attr("r", 5);
 
   //Axis Setup
@@ -55,7 +67,6 @@ function drawChart(){
   chart.append("g")
         .attr("id", "y-axis")
         .attr("transform", "translate(" + xPadding + ", 0)")
-        .call(yAxis);
-
+        .call(yAxis.tickFormat(d3.timeFormat("%M:%S"))); //time format must be called on axis
 
 };
