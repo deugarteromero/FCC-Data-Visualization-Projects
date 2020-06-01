@@ -93,4 +93,22 @@ function drawChart(){
        .attr("text-anchor", "middle")
        .classed("sub-title", true)
        .text("35 Fastest times up Alpe d'Huez");
+
+  chart.append("text")
+       .attr("x", h - 45)
+       .attr("y", -85)
+       .classed("leftLabel", true)
+       .text("Time in Minutes");
+
+  chart.append("text")
+       .attr("x", w - xPadding)
+       .attr("y", h / 2)
+       .classed("legendLabel", true)
+       .text("No Doping Allegations");
+
+  chart.append("text")
+       .attr("x", w - xPadding)
+       .attr("y", (h / 2) + 20)
+       .classed("legendLabel", true)
+       .text("Riders with Doping Allegations");
 };

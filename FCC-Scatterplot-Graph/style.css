@@ -29,3 +29,14 @@ body {
   font-size: 1.25rem;
   font-weight: 400;
 }
+.leftLabel {
+  font-size: 1.10rem;
+  font-weight: 300;
+  text-anchor: end;
+  transform-origin: center;
+  transform: rotate(-90deg);
+}
+.legendLabel {
+  font-size: .85rem;
+  text-anchor: end;
+}
