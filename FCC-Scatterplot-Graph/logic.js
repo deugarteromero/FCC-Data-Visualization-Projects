@@ -48,13 +48,22 @@ function drawChart(){
                      .enter()
                      .append("circle")
                      .classed("plot", true)
+                     .classed("dot", true) //Only to Pass fccTest, I prefer plot
                      .attr("cx", (data) => xScale(new Date(data.Year, 0, 1)) )
                      .attr("cy", (data) => {
                         const Minutes = Math.floor(data.Seconds / 60);
                         const Seconds = data.Seconds - (Minutes * 60);
                         return yScale(new Date(2020, 4, 31, 5, Minutes, Seconds));
                       })
+                     .attr("data-xvalue", (data) => data.Year)
+                     .attr("data-yvalue", (data) => {
+                        const Minutes = Math.floor(data.Seconds / 60);
+                        const Seconds = data.Seconds - (Minutes * 60);
+                        return new Date(2020, 4, 31, 5, Minutes, Seconds);
+                      })
                      .attr("r", 5);
+
+                     console.log(dataset);
 
   //Axis Setup
   const xAxis = d3.axisBottom(xScale);
@@ -69,4 +78,19 @@ function drawChart(){
         .attr("transform", "translate(" + xPadding + ", 0)")
         .call(yAxis.tickFormat(d3.timeFormat("%M:%S"))); //time format must be called on axis
 
+  //Labels Setup
+  chart.append("text")
+       .attr("id", "title")
+       .attr("x", (w / 2) )
+       .attr("y", xPadding - 15)
+       .attr("text-anchor", "middle")
+       .classed("title", true)
+       .text("Doping in Professional Bicycle Racing");
+
+  chart.append("text")
+       .attr("x", (w / 2) )
+       .attr("y", xPadding + 10)
+       .attr("text-anchor", "middle")
+       .classed("sub-title", true)
+       .text("35 Fastest times up Alpe d'Huez");
 };
