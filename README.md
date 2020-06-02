@@ -4,7 +4,7 @@
 ### Projects are published on [Codepen](https://codepen.io/)
 
 * Bar Chart [link to project](https://codepen.io/LavishLavender/full/NWxKWqN) &#x1F4D7;
-* Scatterplot Graph &#x1F4D9;
+* Scatterplot Graph [link to project](https://codepen.io/LavishLavender/full/ZEQzReb) &#x1F4D7;
 * Heat Map &#x1F4D9;
 * Choropleth Map &#x1F4D9;
 * Treemap Diagram &#x1F4D9;
