@@ -62,11 +62,18 @@ function drawChart(){
                         return new Date(2020, 4, 31, 5, Minutes, Seconds);
                       })
                      .attr("data-name", (data) => data.Name)
-                     .attr("data-doping", (data) => data.Doping)
                      .attr("data-nationality", (data) => data.Nationality)
                      .attr("data-time", (data) => data.Time)
                      .attr("data-year", (data) => data.Year)
-                     .attr("r", 5);
+                     .attr("data-doping", (data) => data.Doping)
+                     .attr("r", 5)
+                     .attr("fill", (data) => {
+                       if(data.Doping){
+                         return "firebrick";
+                       } else {
+                         return "orange";
+                       };
+                     });
 
   //Axis Setup
   const xAxis = d3.axisBottom(xScale);
@@ -110,11 +117,25 @@ function drawChart(){
        .classed("legendLabel", true)
        .text("No Doping Allegations");
 
+  chart.append("rect")
+       .attr("x", (w - xPadding) + 5)
+       .attr("y", (h / 2) - 12)
+       .attr("width", 16)
+       .attr("height", 16)
+       .style("fill", "orange")
+
   chart.append("text")
-       .attr("x", w - xPadding)
-       .attr("y", (h / 2) + 20)
-       .classed("legendLabel", true)
-       .text("Riders with Doping Allegations");
+          .attr("x", w - xPadding)
+          .attr("y", (h / 2) + 20)
+          .classed("legendLabel", true)
+          .text("Riders with Doping Allegations")
+
+  chart.append("rect")
+       .attr("x", (w - xPadding) + 5)
+       .attr("y", (h / 2) + 8)
+       .attr("width", 16)
+       .attr("height", 16)
+       .style("fill", "firebrick");
 
   drawTooltip();
 };

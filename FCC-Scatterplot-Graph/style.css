@@ -19,10 +19,11 @@ body {
   box-shadow: 0 0 20px #000000;
 }
 .plot {
-  fill: firebrick;
+  stroke: black;
 }
 .hoverEffect {
   fill: lightblue;
+  stroke: lightblue;
 }
 .title {
   font-size: 1.85rem;
