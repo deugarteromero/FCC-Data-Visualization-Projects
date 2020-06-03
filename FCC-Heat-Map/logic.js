@@ -41,18 +41,18 @@ function drawChart(){
                      .enter()
                      .append("rect")
                      .classed("bar", true)
-//                      .classed("dot", true) //Only to Pass fccTest, I prefer plot
+
+                     .classed("cell", true) //FCC Pass Test, Not Necessary in Function
+
                      .attr("x", (data) => xScale(new Date(data.year, 0, 1)) )
                      .attr("y", (data) => yScale(convertMonth(data.month)) )
                      .attr("width", w / 262 )
-                     .attr("height", h / 12 )
+                     .attr("height", (h - 165) / 12 )
 
-//                      .attr("data-name", (data) => data.Name)
-//                      .attr("data-nationality", (data) => data.Nationality)
-//                      .attr("data-time", (data) => data.Time)
-//                      .attr("data-year", (data) => data.Year)
-//                      .attr("data-doping", (data) => data.Doping)
-//                      .attr("r", 5)
+                     .attr("data-month", (data) => data.month)
+                     .attr("data-year", (data) => data.year)
+                     .attr("data-temp", (data) => Number((8.66 + (data.variance)).toFixed(2)))
+
                      .attr("fill", (data) => {
                         const temp = Number((8.66 + (data.variance)).toFixed(2));
                         if (temp <= 2.80) { return "firebrick" } else
@@ -85,16 +85,17 @@ function drawChart(){
   chart.append("text")
        .attr("id", "title")
        .attr("x", (w / 2) )
-       .attr("y", 50)
+       .attr("y", 45)
        .attr("text-anchor", "middle")
        .classed("title", true)
        .text("Monthly Global Land-Surface Temperature");
 
   chart.append("text")
        .attr("x", (w / 2) )
-       .attr("y", 80)
+       .attr("y", 70)
        .attr("text-anchor", "middle")
        .classed("sub-title", true)
+       .attr("id", "description") //FCC Pass Test, Not Necessary in Function
        .text("1753 - 2015: Base Temperature 8.66C");
 
 //   chart.append("text")
