@@ -108,15 +108,16 @@ function drawChart(){
        .text("Years");
 
   const legend = chart.append("g")
-                      .attr("id", "legend"); //FCC Pass Test, Not Necessary in Function
+                      .attr("id", "legend") //FCC Pass Test, Not Necessary in Function
+                      .attr("transform", "translate(90, 690)");
 
   legend.append("g")
         .selectAll("rect")
         .data([1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11]) //Number of Circles
         .enter()
         .append("rect")
-        .attr("x", (data) => (data * 35) + 60 )
-        .attr("y", h - 60)
+        .attr("x", (data, index) => (index * 35) )
+        .attr("y", 0)
         .attr("width", 30)
         .attr("height", 30)
         .attr("fill", (data) => {
@@ -134,18 +135,18 @@ function drawChart(){
         })
         .attr("stroke", "black");
 
-  legend.append("g")
-        .selectAll("g")
-        .data([2.8, 3.9, 5.0, 6.1, 7.2, 8.3, 9.5, 10.6, 11.7, 12.8])
-        .enter()
-        .append("g")
+  const subLegend = legend.append("g")
+                          .attr("transform", "translate(0, 50)")
+                          .selectAll("g")
+                          .data([2.8, 3.9, 5.0, 6.1, 7.2, 8.3, 9.5, 10.6, 11.7, 12.8])
+                          .enter()
+                          .append("g")
+                          .attr("transform", "translate(10, 0)");
 
-        .append("line")
-        .attr("x", 30)
-        .attr("y", h - 60)
-
-        .append("text")
-        .text( (data) => data)
+  subLegend.append("text")
+           .attr("x", (data, index) => (index * 35) + 10)
+           .attr("y", 0)
+           .text( (data) => data.toFixed(1))
 
   drawTooltip();
 };
@@ -240,4 +241,3 @@ function drawTooltip(){
     });
   };
 };
-
