@@ -54,17 +54,17 @@ function drawChart(){
 
                      .attr("fill", (data) => {
                         const temp = Number((8.66 + (data.variance)).toFixed(2));
-                        if (temp <= 2.80) { return "firebrick" } else
-                        if (temp <= 3.80) { return "blue" } else
-                        if (temp <= 5.00) { return "yellow" } else
-                        if (temp <= 6.10) { return "green" } else
-                        if (temp <= 7.20) { return "purple" } else
-                        if (temp <= 8.30) { return "blue" } else
-                        if (temp <= 9.50) { return "blue" } else
-                        if (temp <= 10.60) { return "blue" } else
-                        if (temp <= 11.70) { return "blue" } else
-                        if (temp <= 12.80) { return "blue" } else
-                        if (temp >= 12.81) { return "blue" };
+                        if (temp <= 2.80) { return "#006AFF" } else
+                        if (temp <= 3.80) { return "#3288FF" } else
+                        if (temp <= 5.00) { return "#66A5FF" } else
+                        if (temp <= 6.10) { return "#99C3FF" } else
+                        if (temp <= 7.20) { return "#CCE1FF" } else
+                        if (temp <= 8.30) { return "#FFAD99" } else
+                        if (temp <= 9.50) { return "#FF8466" } else
+                        if (temp <= 10.60) { return "#FF5B32" } else
+                        if (temp <= 11.70) { return "#FF6666" } else
+                        if (temp <= 12.80) { return "#FF3232" } else
+                        if (temp >= 12.81) { return "#FF0000" };
                      });
 
   //Axis Setup
