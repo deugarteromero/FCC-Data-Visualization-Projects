@@ -217,7 +217,7 @@ function drawTooltip(){
 
       //Update tooltip Data
       const updatedParagraph1 = document.createElement('p');
-      updatedParagraph1.appendChild(document.createTextNode(`${el.dataset.year}: ${convertMonth(Number(el.dataset.month - 1))}`));
+      updatedParagraph1.appendChild(document.createTextNode(`${el.dataset.year}: ${convertMonth(Number(el.dataset.month))}`));
       tooltipElement.replaceChild(updatedParagraph1, tooltipElement.childNodes[0]);
 
       const updatedParagraph2 = document.createElement('p');
