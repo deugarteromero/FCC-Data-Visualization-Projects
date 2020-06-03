@@ -36,18 +36,17 @@ function drawChart(){
                   .attr("width", w)
                   .attr("height", h);
 
-  const bar = chart.selectAll('.bar')
+  const cell = chart.selectAll('.cell')
                      .data(dataset.monthlyVariance)
                      .enter()
                      .append("rect")
-                     .classed("bar", true)
-
-                     .classed("cell", true) //FCC Pass Test, Not Necessary in Function
+                     .classed("cell", true)
+                     .classed("cell:hover", true)
 
                      .attr("x", (data) => xScale(new Date(data.year, 0, 1)) )
                      .attr("y", (data) => yScale(convertMonth(data.month)) )
                      .attr("width", w / 262 )
-                     .attr("height", (h - 165) / 12 )
+                     .attr("height", (h - 165) / 12 ) //Height Adjustment Needed ? Not Sure Why
 
                      .attr("data-month", (data) => data.month)
                      .attr("data-year", (data) => data.year)
