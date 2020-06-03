@@ -16,8 +16,6 @@ function drawChart(){
   const xPadding = 90;
   const yPadding = 90;
 
-// console.log(dataset.monthlyVariance); //DEBUG
-
   //Scale Setup
   const xMaxValue = d3.max(dataset.monthlyVariance, (data) => new Date(data.year, data.month, 1) );
   const xMinValue = d3.min(dataset.monthlyVariance, (data) => new Date(data.year, data.month, 1) );
@@ -44,11 +42,11 @@ function drawChart(){
                      .classed("cell:hover", true)
 
                      .attr("x", (data) => xScale(new Date(data.year, 0, 1)) )
-                     .attr("y", (data) => yScale(convertMonth(data.month)) )
+                     .attr("y", (data) => yScale(convertMonth(data.month - 1)) )
                      .attr("width", w / 262 )
                      .attr("height", (h - 165) / 12 ) //Height Adjustment Needed ? Not Sure Why
 
-                     .attr("data-month", (data) => data.month)
+                     .attr("data-month", (data) => data.month - 1)
                      .attr("data-year", (data) => data.year)
                      .attr("data-temp", (data) => Number((8.66 + (data.variance)).toFixed(2)))
 
@@ -154,40 +152,40 @@ function drawChart(){
 
 function convertMonth(num){
   switch(num){
-    case 1:
+    case 0:
       return "January";
       break;
-    case 2:
+    case 1:
       return "February";
       break;
-    case 3:
+    case 2:
       return "March";
       break;
-    case 4:
+    case 3:
       return "April";
       break;
-    case 5:
+    case 4:
       return "May";
       break;
-    case 6:
+    case 5:
       return "June";
       break;
-    case 7:
+    case 6:
       return "July";
       break;
-    case 8:
+    case 7:
       return "August";
       break;
-    case 9:
+    case 8:
       return "September";
       break;
-    case 10:
+    case 9:
       return "October";
       break;
-    case 11:
+    case 10:
       return "November";
       break;
-    case 12:
+    case 11:
       return "December";
       break;
   };
@@ -218,7 +216,7 @@ function drawTooltip(){
 
       //Update tooltip Data
       const updatedParagraph1 = document.createElement('p');
-      updatedParagraph1.appendChild(document.createTextNode(`${el.dataset.year}: ${convertMonth(Number(el.dataset.month))}`));
+      updatedParagraph1.appendChild(document.createTextNode(`${el.dataset.year}: ${convertMonth(Number(el.dataset.month - 1))}`));
       tooltipElement.replaceChild(updatedParagraph1, tooltipElement.childNodes[0]);
 
       const updatedParagraph2 = document.createElement('p');
@@ -232,7 +230,6 @@ function drawTooltip(){
       //Show tooltip @Desired x Position
       let xPos = Math.round(el.getBoundingClientRect().x);
       let yPos = Math.round(el.getBoundingClientRect().y);
-      console.log(xPos, yPos);
       tooltip.classList.remove('noVisibility');
       tooltip.style.top = `${yPos - 85}px`;
       tooltip.style.left = `${xPos - 20}px`;
