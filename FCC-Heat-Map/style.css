@@ -19,7 +19,7 @@ body {
   box-shadow: 0 0 20px #000000;
 }
 .cell:hover {
-  fill: green;
+  fill: lightgreen;
 }
 .title {
   font-size: 1.85rem;
@@ -31,10 +31,15 @@ body {
 }
 .leftLabel {
   font-size: 1.10rem;
-  font-weight: 300;
+  font-weight: 400;
   text-anchor: end;
   transform-origin: center;
   transform: rotate(-90deg);
+}
+.bottomLabel {
+  font-size: 1.10rem;
+  font-weight: 400;
+  text-anchor: middle;
 }
 .legendLabel {
   font-size: .85rem;

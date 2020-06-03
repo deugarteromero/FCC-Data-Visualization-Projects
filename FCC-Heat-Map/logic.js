@@ -97,18 +97,18 @@ function drawChart(){
        .attr("id", "description") //FCC Pass Test, Not Necessary in Function
        .text("1753 - 2015: Base Temperature 8.66C");
 
-//   chart.append("text")
-//        .attr("x", h - 45)
-//        .attr("y", -85)
-//        .classed("leftLabel", true)
-//        .text("Time in Minutes");
+  chart.append("text")
+       .attr("x", h)
+       .attr("y", -350)
+       .classed("leftLabel", true)
+       .text("Months");
 
-//   chart.append("text")
-//        .attr("id", "legend") //Pass fccTest
-//        .attr("x", w - xPadding)
-//        .attr("y", h / 2)
-//        .classed("legendLabel", true)
-//        .text("No Doping Allegations");
+  chart.append("text")
+      //  .attr("id", "legend") //Pass fccTest
+       .attr("x", w / 2)
+       .attr("y", h - (yPadding  / 2))
+       .classed("bottomLabel", true)
+       .text("Years");
 
 //   chart.append("rect")
 //        .attr("x", (w - xPadding) + 5)
