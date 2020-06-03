@@ -41,10 +41,6 @@ body {
   font-weight: 400;
   text-anchor: middle;
 }
-.legendLabel {
-  font-size: .85rem;
-  text-anchor: end;
-}
 #tooltip {
   position: absolute;
   top: calc(100% - 200px);

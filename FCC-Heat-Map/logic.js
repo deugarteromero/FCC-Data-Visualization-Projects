@@ -104,33 +104,52 @@ function drawChart(){
        .text("Months");
 
   chart.append("text")
-      //  .attr("id", "legend") //Pass fccTest
        .attr("x", w / 2)
        .attr("y", h - (yPadding  / 2))
        .classed("bottomLabel", true)
        .text("Years");
 
-//   chart.append("rect")
-//        .attr("x", (w - xPadding) + 5)
-//        .attr("y", (h / 2) - 12)
-//        .attr("width", 16)
-//        .attr("height", 16)
-//        .style("fill", "orange")
+  const legend = chart.append("g")
+                      .attr("id", "legend"); //FCC Pass Test, Not Necessary in Function
 
-//   chart.append("text")
-//           .attr("x", w - xPadding)
-//           .attr("y", (h / 2) + 20)
-//           .classed("legendLabel", true)
-//           .text("Riders with Doping Allegations")
+  legend.append("g")
+        .selectAll("rect")
+        .data([1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11]) //Number of Circles
+        .enter()
+        .append("rect")
+        .attr("x", (data) => (data * 35) + 60 )
+        .attr("y", h - 60)
+        .attr("width", 30)
+        .attr("height", 30)
+        .attr("fill", (data) => {
+         if (data === 1) { return "#006AFF" } else
+         if (data === 2) { return "#3288FF" } else
+         if (data === 3) { return "#66A5FF" } else
+         if (data === 4) { return "#99C3FF" } else
+         if (data === 5) { return "#CCE1FF" } else
+         if (data === 6) { return "#FFAD99" } else
+         if (data === 7) { return "#FF8466" } else
+         if (data === 8) { return "#FF5B32" } else
+         if (data === 9) { return "#FF6666" } else
+         if (data === 10) { return "#FF3232" } else
+         if (data === 11) { return "#FF0000" };
+        })
+        .attr("stroke", "black");
 
-//   chart.append("rect")
-//        .attr("x", (w - xPadding) + 5)
-//        .attr("y", (h / 2) + 8)
-//        .attr("width", 16)
-//        .attr("height", 16)
-//        .style("fill", "firebrick");
+  legend.append("g")
+        .selectAll("g")
+        .data([2.8, 3.9, 5.0, 6.1, 7.2, 8.3, 9.5, 10.6, 11.7, 12.8])
+        .enter()
+        .append("g")
 
-//   drawTooltip();
+        .append("line")
+        .attr("x", 30)
+        .attr("y", h - 60)
+
+        .append("text")
+        .text( (data) => data)
+
+  drawTooltip();
 };
 
 function convertMonth(num){
@@ -174,59 +193,54 @@ function convertMonth(num){
   };
 };
 
-// //Tooltip Component
-// const tooltipElement = document.createElement('div');
-// const textOne = document.createElement('p');
-// const textTwo = document.createElement('p');
-// const textThree = document.createElement('p');
-// tooltipElement.appendChild(textOne);
-// tooltipElement.appendChild(textTwo);
-// tooltipElement.appendChild(textThree);
-// tooltipElement.setAttribute("id", "tooltip");
-// tooltipElement.setAttribute("class", "noVisibility");
-// //Append tooltip to body
-// const divContainer = document.getElementsByTagName('div')[0];
-// divContainer.appendChild(tooltipElement);
-// //Selection for tooltip
-// const tooltip = document.getElementById('tooltip');
+//Tooltip Component
+const tooltipElement = document.createElement('div');
+const textOne = document.createElement('p');
+const textTwo = document.createElement('p');
+const textThree = document.createElement('p');
+tooltipElement.appendChild(textOne);
+tooltipElement.appendChild(textTwo);
+tooltipElement.appendChild(textThree);
+tooltipElement.setAttribute("id", "tooltip");
+tooltipElement.setAttribute("class", "noVisibility");
+//Append tooltip to body
+const divContainer = document.getElementsByTagName('div')[0];
+divContainer.appendChild(tooltipElement);
+//Selection for tooltip
+const tooltip = document.getElementById('tooltip');
 
-// function drawTooltip(){
-//   const plotsArray = document.querySelectorAll('.plot');
-//   for(const el of plotsArray){
-//     el.addEventListener('mouseenter', () => {
-//       el.classList.add('hoverEffect');
+function drawTooltip(){
+  const cellsArray = document.querySelectorAll('.cell');
+  for(const el of cellsArray){
+    el.addEventListener('mouseenter', () => {
 
-//       tooltip.setAttribute("data-year", el.dataset.year); //Pass Test #TooltipTests 2 of FCC, Even though it does not affect actual function of chart
+      tooltip.setAttribute("data-year", el.dataset.year); //Pass Test #TooltipTests 2 of FCC, Even though it does not affect actual function of chart
 
-//       //Update tooltip Data
-//       const updatedParagraph1 = document.createElement('p');
-//       updatedParagraph1.appendChild(document.createTextNode(`${el.dataset.name}: ${el.dataset.nationality}`));
-//       tooltipElement.replaceChild(updatedParagraph1, tooltipElement.childNodes[0]);
+      //Update tooltip Data
+      const updatedParagraph1 = document.createElement('p');
+      updatedParagraph1.appendChild(document.createTextNode(`${el.dataset.year}: ${convertMonth(Number(el.dataset.month))}`));
+      tooltipElement.replaceChild(updatedParagraph1, tooltipElement.childNodes[0]);
 
-//       const updatedParagraph2 = document.createElement('p');
-//       updatedParagraph2.appendChild(document.createTextNode(`Year: ${el.dataset.xvalue}, Time: ${el.dataset.time}`));
-//       tooltipElement.replaceChild(updatedParagraph2, tooltipElement.childNodes[1]);
+      const updatedParagraph2 = document.createElement('p');
+      updatedParagraph2.appendChild(document.createTextNode(`${el.dataset.temp}`));
+      tooltipElement.replaceChild(updatedParagraph2, tooltipElement.childNodes[1]);
 
-//       const updatedParagraph3 = document.createElement('p');
-//       updatedParagraph3.appendChild(document.createTextNode(`${el.dataset.doping}`));
-//       tooltipElement.replaceChild(updatedParagraph3, tooltipElement.childNodes[2]);
+      const updatedParagraph3 = document.createElement('p');
+      updatedParagraph3.appendChild(document.createTextNode(`${((el.dataset.temp) - 8.66).toFixed(2)+String.fromCharCode(176)}C`));
+      tooltipElement.replaceChild(updatedParagraph3, tooltipElement.childNodes[2]);
 
-//       if(el.dataset.doping === ""){
-        
-//       };
+      //Show tooltip @Desired x Position
+      let xPos = Math.round(el.getBoundingClientRect().x);
+      let yPos = Math.round(el.getBoundingClientRect().y);
+      console.log(xPos, yPos);
+      tooltip.classList.remove('noVisibility');
+      tooltip.style.top = `${yPos - 85}px`;
+      tooltip.style.left = `${xPos - 20}px`;
 
-//       //Show tooltip @Desired x Position
-//       let xPos = Math.round(el.getBoundingClientRect().x);
-//       let yPos = Math.round(el.getBoundingClientRect().y);
-//       tooltip.classList.remove('noVisibility');
-//       tooltip.style.top = `${(yPos - 33)}px`;
-//       tooltip.style.left = `${xPos + 15}px`;
-
-//     });
-//     el.addEventListener('mouseleave', () => {
-//       el.classList.remove('hoverEffect');
-//       tooltip.classList.add('noVisibility');
-//     });
-//   };
-// };
+    });
+    el.addEventListener('mouseleave', () => {
+      tooltip.classList.add('noVisibility');
+    });
+  };
+};
 
