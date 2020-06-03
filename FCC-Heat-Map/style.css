@@ -1,0 +1,59 @@
+* {
+  padding: 0;
+  margin: 0;
+  box-sizing: border-box;
+}
+
+body {
+  font-family: 'Roboto', sans-serif;
+  background-color: #FFFFFF;
+  height: 100vh;
+  display: grid;
+  place-content: center;
+}
+
+/* D3 Bar Chart Component Designs */
+.design {
+  display: inline-block;
+  background-color: #FFFFFF;
+  box-shadow: 0 0 20px #000000;
+}
+.hoverEffect {
+  fill: lightblue;
+  stroke: lightblue;
+}
+.title {
+  font-size: 1.85rem;
+  font-weight: 400;
+}
+.sub-title {
+  font-size: 1.25rem;
+  font-weight: 400;
+}
+.leftLabel {
+  font-size: 1.10rem;
+  font-weight: 300;
+  text-anchor: end;
+  transform-origin: center;
+  transform: rotate(-90deg);
+}
+.legendLabel {
+  font-size: .85rem;
+  text-anchor: end;
+}
+#tooltip {
+  position: absolute;
+  top: calc(100% - 200px);
+  left: 90px;
+
+  padding: .5rem 1rem;
+  background-color: #9BB1C6;
+  box-shadow: 0 0 5px #000000;
+  border-radius: 3px;
+  opacity: .85;
+}
+
+/* Misc */
+.noVisibility {
+  visibility: hidden;
+}
