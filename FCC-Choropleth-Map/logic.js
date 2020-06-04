@@ -53,6 +53,18 @@ function drawChart(){
                         });
                         return result[0].bachelorsOrHigher;
                       })
+                      .attr("data-county", (data) => {
+                        const result = datasetEducation.filter( (el) => {
+                          return data.id === el.fips;
+                        });
+                        return result[0].area_name;
+                      })
+                      .attr("data-state", (data) => {
+                        const result = datasetEducation.filter( (el) => {
+                          return data.id === el.fips;
+                        });
+                        return result[0].state;
+                      })
 
                       .attr("fill", (data) => {
                         const result = datasetEducation.filter( (el) => {
@@ -158,7 +170,7 @@ function drawTooltip(){
 
       //Update tooltip Data
       const updatedParagraph1 = document.createElement('p');
-      updatedParagraph1.appendChild(document.createTextNode(`county, state: ${el.dataset.education}%`)); //ADJUST
+      updatedParagraph1.appendChild(document.createTextNode(`${el.dataset.county}, ${el.dataset.state}: ${el.dataset.education}%`)); //ADJUST
       tooltipElement.replaceChild(updatedParagraph1, tooltipElement.childNodes[0]);
 
       //Show tooltip @Desired x Position
