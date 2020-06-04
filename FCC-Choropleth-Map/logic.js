@@ -20,18 +20,6 @@ function drawChart(){
   const h = 750;
   const padding = 90;
 
-//   //Scale Setup
-//   const xMaxValue = d3.max(dataset.monthlyVariance, (data) => new Date(data.year, data.month, 1) );
-//   const xMinValue = d3.min(dataset.monthlyVariance, (data) => new Date(data.year, data.month, 1) );
-//   const xScale = d3.scaleTime()
-//                    .domain([xMinValue, xMaxValue])
-//                    .range([xPadding, w - xPadding]);
-
-//   const Months = ["January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December"];
-//   const yScale = d3.scaleBand()
-//                    .domain(Months.reverse())
-//                    .range([h - yPadding, yPadding]);
-
   //Path Setup
   const path = d3.geoPath();
 
@@ -80,20 +68,7 @@ function drawChart(){
                         if (percent <=  57) { return "#238B45" } else
                         if (percent <=  66) { return "#006D2C" } else
                         if (percent <= 100) { return "#00441B" };
-                      })
-
-//   //Axis Setup
-//   const xAxis = d3.axisBottom(xScale);
-//   chart.append("g")
-//         .attr("id", "x-axis")
-//         .attr("transform", "translate(0, " + (h - yPadding) + ")")
-//         .call(xAxis);
-
-//   const yAxis = d3.axisLeft(yScale);
-//   chart.append("g")
-//         .attr("id", "y-axis")
-//         .attr("transform", "translate(" + xPadding + ", 0)")
-//         .call(yAxis);
+                      });
 
   //Labels Setup
   chart.append("text")
@@ -155,24 +130,9 @@ function drawChart(){
               return `${data}%`;
             });
 
-  individual.append("line")
-            // .attr("x2", (data, index) => index * 30)
-            .attr("y2", 15)
-            .attr("stroke", "black")
-        
-
-//   const subLegend = legend.append("g")
-//                           .attr("transform", "translate(0, 50)")
-//                           .selectAll("g")
-//                           .data([2.8, 3.9, 5.0, 6.1, 7.2, 8.3, 9.5, 10.6, 11.7, 12.8])
-//                           .enter()
-//                           .append("g")
-//                           .attr("transform", "translate(10, 0)");
-
-//   subLegend.append("text")
-//            .attr("x", (data, index) => (index * 35) + 10)
-//            .attr("y", 0)
-//            .text( (data) => data.toFixed(1))
+  // individual.append("line")
+  //           .attr("y2", 15)
+  //           .attr("stroke", "black")
 
   drawTooltip();
 };
