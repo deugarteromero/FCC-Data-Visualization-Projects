@@ -13,7 +13,7 @@ getData();
 function drawChart(){
   const w = 940;
   const h = 640;
-  const xPadding = 20;
+  const xPadding = 30;
   const yPadding = 90;
 
   // console.log(dataset); //DEBUG
@@ -41,7 +41,10 @@ function drawChart(){
 
   d3.treemap().size([w - xPadding, h - yPadding]).padding(0)(root);
 
-  const tiles = chart.selectAll('.tile')
+  const tiles = chart.append("g")
+                     .attr("transform", `translate(${xPadding / 2}, ${yPadding / 2})`)
+
+                     .selectAll('.tile')
                      .data(root.leaves())
                      .enter()
                      .append("rect")
