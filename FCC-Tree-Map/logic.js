@@ -98,18 +98,18 @@ function drawChart(){
   chart.append("text")
        .attr("id", "title")
        .attr("x", (w / 2) )
-       .attr("y", 35) //ADJUST
+       .attr("y", 50) //ADJUST
        .attr("text-anchor", "middle")
        .classed("title", true)
-       .text("Movies");
+       .text("USA Box Office Earnings");
 
-//   chart.append("text")
-//        .attr("x", (w / 2) )
-//        .attr("y", 70)
-//        .attr("text-anchor", "middle")
-//        .classed("sub-title", true)
-//        .attr("id", "description") //FCC Pass Test, Not Necessary in Function
-//        .text("1753 - 2015: Base Temperature 8.66C");
+  chart.append("text")
+       .attr("x", (w / 2) )
+       .attr("y", 76)
+       .attr("text-anchor", "middle")
+       .classed("sub-title", true)
+       .attr("id", "description") //FCC Pass Test, Not Necessary in Function
+       .text("95? Highest Domestic Box Office Earnings Grouped by Genre");
 
 //   chart.append("text")
 //        .attr("x", h)
@@ -167,23 +167,23 @@ function drawChart(){
 //   drawTooltip();
 };
 
-// //Tooltip Component
-// const tooltipElement = document.createElement('div');
-// const textOne = document.createElement('p');
-// const textTwo = document.createElement('p');
-// const textThree = document.createElement('p');
-// tooltipElement.appendChild(textOne);
-// tooltipElement.appendChild(textTwo);
-// tooltipElement.appendChild(textThree);
-// tooltipElement.setAttribute("id", "tooltip");
-// tooltipElement.setAttribute("class", "noVisibility");
-// //Append tooltip to body
-// const divContainer = document.getElementsByTagName('div')[0];
-// divContainer.appendChild(tooltipElement);
-// //Selection for tooltip
-// const tooltip = document.getElementById('tooltip');
+//Tooltip Component
+const tooltipElement = document.createElement('div');
+const textOne = document.createElement('p');
+const textTwo = document.createElement('p');
+const textThree = document.createElement('p');
+tooltipElement.appendChild(textOne);
+tooltipElement.appendChild(textTwo);
+tooltipElement.appendChild(textThree);
+tooltipElement.setAttribute("id", "tooltip");
+tooltipElement.setAttribute("class", "noVisibility");
+//Append tooltip to body
+const divContainer = document.getElementsByTagName('div')[0];
+divContainer.appendChild(tooltipElement);
+//Selection for tooltip
+const tooltip = document.getElementById('tooltip');
 
-// function drawTooltip(){
+function drawTooltip(){
 //   const cellsArray = document.querySelectorAll('.cell');
 //   for(const el of cellsArray){
 //     el.addEventListener('mouseenter', () => {
@@ -215,4 +215,4 @@ function drawChart(){
 //       tooltip.classList.add('noVisibility');
 //     });
 //   };
-// };
+};
