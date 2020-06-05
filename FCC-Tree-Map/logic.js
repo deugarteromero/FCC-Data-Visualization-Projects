@@ -11,10 +11,10 @@ getData();
 
 //Draw Chart Once Data is Available
 function drawChart(){
-  const w = 940;
+  const w = 1030;
   const h = 640;
   const xPadding = 30;
-  const yPadding = 90;
+  const yPadding = 180;
 
   console.log(dataset); //DEBUG
 
@@ -47,7 +47,7 @@ function drawChart(){
   //Current Case: Movie Genres
   const colorScale = d3.scaleOrdinal()
                        .domain(["Action", "Drama", "Adventure", "Family", "Animation", "Comedy", "Biography"])
-                       .range(["red", "blue", "orange", "white", "firebrick", "purple", "green"]);
+                       .range(["#6B2737", "#BF3100", "#F7B801", "#F18701", "#F35B04", "#A54657", "#C589E8"]);
 
   const tiles = chart.append("g")
                      .attr("transform", `translate(${xPadding / 2}, ${yPadding / 2})`)
@@ -57,13 +57,18 @@ function drawChart(){
                      .enter()
                      .append("rect")
                      .classed("tile", true)
+                     .attr("id", "description") //Please FCC Tests
 
                      .attr("x", (data) => data.x0 )
                      .attr("y", (data) => data.y0 )
                      .attr("width", (data) => data.x1 - data.x0)
                      .attr("height", (data) => data.y1 - data.y0)
                      .attr("stroke", "white")
-                     .attr("fill", (data) => colorScale(data.parent.data.name) );
+                     .attr("fill", (data) => colorScale(data.parent.data.name) )
+
+                     .attr("data-name", (data) => data.data.name)
+                     .attr("data-category", (data) => data.data.category )
+                     .attr("data-value", (data) => data.data.value );
 
   const texts = chart.append("g")
                      .attr("transform", `translate(${xPadding / 2}, ${yPadding / 2})`)
