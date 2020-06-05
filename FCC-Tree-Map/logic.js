@@ -16,7 +16,7 @@ function drawChart(){
   const xPadding = 30;
   const yPadding = 90;
 
-  // console.log(dataset); //DEBUG
+  console.log(dataset); //DEBUG
 
 //   //Scale Setup
 //   const xMaxValue = d3.max(dataset.monthlyVariance, (data) => new Date(data.year, data.month, 1) );
@@ -36,10 +36,18 @@ function drawChart(){
                   .attr("width", w)
                   .attr("height", h);
 
+  //Create root with the Data Values
   const root = d3.hierarchy(dataset).sum( (data) => data.value );
   // console.log(root); //DEBUG
 
+  //Use treemap to determine Size of Tiles from root Values
   d3.treemap().size([w - xPadding, h - yPadding]).padding(0)(root);
+
+  //Color Scale for Multiple Groups
+  //Current Case: Movie Genres
+  const colorScale = d3.scaleOrdinal()
+                       .domain(["Action", "Drama", "Adventure", "Family", "Animation", "Comedy", "Biography"])
+                       .range(["red", "blue", "orange", "white", "firebrick", "purple", "green"]);
 
   const tiles = chart.append("g")
                      .attr("transform", `translate(${xPadding / 2}, ${yPadding / 2})`)
@@ -55,7 +63,7 @@ function drawChart(){
                      .attr("width", (data) => data.x1 - data.x0)
                      .attr("height", (data) => data.y1 - data.y0)
                      .attr("stroke", "white")
-                     .attr("fill", "blue");
+                     .attr("fill", (data) => colorScale(data.parent.data.name) );
 
   const texts = chart.append("g")
                      .attr("transform", `translate(${xPadding / 2}, ${yPadding / 2})`)
