@@ -18,17 +18,15 @@ body {
   background-color: #FFFFFF;
   box-shadow: 0 0 20px #000000;
 }
-
-
-
-
-.cell:hover {
-  fill: lightgreen;
-}
 .title {
   font-size: 1.85rem;
   font-weight: 400;
 }
+
+
+
+
+
 .sub-title {
   font-size: 1.25rem;
   font-weight: 400;

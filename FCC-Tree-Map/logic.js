@@ -77,14 +77,14 @@ function drawChart(){
 //         .attr("transform", "translate(" + xPadding + ", 0)")
 //         .call(yAxis);
 
-//   //Labels Setup
-//   chart.append("text")
-//        .attr("id", "title")
-//        .attr("x", (w / 2) )
-//        .attr("y", 45)
-//        .attr("text-anchor", "middle")
-//        .classed("title", true)
-//        .text("Monthly Global Land-Surface Temperature");
+  //Labels Setup
+  chart.append("text")
+       .attr("id", "title")
+       .attr("x", (w / 2) )
+       .attr("y", 35) //ADJUST
+       .attr("text-anchor", "middle")
+       .classed("title", true)
+       .text("Movies");
 
 //   chart.append("text")
 //        .attr("x", (w / 2) )
