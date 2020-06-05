@@ -50,19 +50,23 @@ function drawChart(){
                      .append("rect")
                      .classed("tile", true)
 
-//                      .classed("cell:hover", true)
-
                      .attr("x", (data) => data.x0 )
                      .attr("y", (data) => data.y0 )
                      .attr("width", (data) => data.x1 - data.x0)
                      .attr("height", (data) => data.y1 - data.y0)
-
-//                      .attr("data-month", (data) => data.month - 1)
-//                      .attr("data-year", (data) => data.year)
-//                      .attr("data-temp", (data) => Number((8.66 + (data.variance)).toFixed(2)))
-
                      .attr("stroke", "white")
                      .attr("fill", "blue");
+
+  const texts = chart.append("g")
+                     .attr("transform", `translate(${xPadding / 2}, ${yPadding / 2})`)
+
+                     .selectAll("text")
+                     .data(root.leaves())
+                     .enter()
+                     .append("text")
+                     .attr("x", (data) => data.x0 + 5 )
+                     .attr("y", (data) => data.y0 + 20 )
+                     .text( (data) => data.data.name );
 
 //   //Axis Setup
 //   const xAxis = d3.axisBottom(xScale);
