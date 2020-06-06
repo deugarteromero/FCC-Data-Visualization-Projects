@@ -22,27 +22,13 @@ body {
   font-size: 1.85rem;
   font-weight: 400;
 }
-
-
-
-
-
 .sub-title {
   font-size: 1.25rem;
   font-weight: 400;
 }
-.leftLabel {
-  font-size: 1.10rem;
-  font-weight: 400;
-  text-anchor: end;
-  transform-origin: center;
-  transform: rotate(-90deg);
-}
-.bottomLabel {
-  font-size: 1.10rem;
-  font-weight: 400;
-  text-anchor: middle;
-}
+
+
+
 #tooltip {
   position: absolute;
   top: calc(100% - 200px);

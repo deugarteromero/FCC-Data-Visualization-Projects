@@ -111,60 +111,49 @@ function drawChart(){
        .attr("id", "description") //FCC Pass Test, Not Necessary in Function
        .text("95? Highest Domestic Box Office Earnings Grouped by Genre");
 
-//   chart.append("text")
-//        .attr("x", h)
-//        .attr("y", -350)
-//        .classed("leftLabel", true)
-//        .text("Months");
+  const legend = chart.append("g")
+                      .attr("id", "legend") //FCC Pass Test, Not Necessary in Function
+                      .attr("transform", "translate(90, 580)");
 
-//   chart.append("text")
-//        .attr("x", w / 2)
-//        .attr("y", h - (yPadding  / 2))
-//        .classed("bottomLabel", true)
-//        .text("Years");
+  const group = legend.append("g")
 
-//   const legend = chart.append("g")
-//                       .attr("id", "legend") //FCC Pass Test, Not Necessary in Function
-//                       .attr("transform", "translate(90, 690)");
+                      .selectAll("g")
+                      .data([1, 2, 3, 4, 5, 6, 7])
+                      .enter()
+                      .append("g");
 
-//   legend.append("g")
-//         .selectAll("rect")
-//         .data([1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11]) //Number of Circles
-//         .enter()
-//         .append("rect")
-//         .attr("x", (data, index) => (index * 35) )
-//         .attr("y", 0)
-//         .attr("width", 30)
-//         .attr("height", 30)
-//         .attr("fill", (data) => {
-//          if (data === 1) { return "#006AFF" } else
-//          if (data === 2) { return "#3288FF" } else
-//          if (data === 3) { return "#66A5FF" } else
-//          if (data === 4) { return "#99C3FF" } else
-//          if (data === 5) { return "#CCE1FF" } else
-//          if (data === 6) { return "#FFAD99" } else
-//          if (data === 7) { return "#FF8466" } else
-//          if (data === 8) { return "#FF5B32" } else
-//          if (data === 9) { return "#FF6666" } else
-//          if (data === 10) { return "#FF3232" } else
-//          if (data === 11) { return "#FF0000" };
-//         })
-//         .attr("stroke", "black");
+  group.append("rect")
 
-//   const subLegend = legend.append("g")
-//                           .attr("transform", "translate(0, 50)")
-//                           .selectAll("g")
-//                           .data([2.8, 3.9, 5.0, 6.1, 7.2, 8.3, 9.5, 10.6, 11.7, 12.8])
-//                           .enter()
-//                           .append("g")
-//                           .attr("transform", "translate(10, 0)");
+        .classed("legend-item", true) //FCC Pass Test, Not Necessary in Function
 
-//   subLegend.append("text")
-//            .attr("x", (data, index) => (index * 35) + 10)
-//            .attr("y", 0)
-//            .text( (data) => data.toFixed(1))
+        .attr("x", (data, index) => (index * 100) )
+        .attr("y", 0)
+        .attr("width", 20)
+        .attr("height", 20)
+        .attr("fill", (data) => {
+          if (data === 1) { return "#6B2737" } else
+          if (data === 2) { return "#BF3100" } else
+          if (data === 3) { return "#F7B801" } else
+          if (data === 4) { return "#F18701" } else
+          if (data === 5) { return "#F35B04" } else
+          if (data === 6) { return "#A54657" } else
+          if (data === 7) { return "#C589E8" };
+        });
 
-//   drawTooltip();
+  group.append("text")
+       .attr("x", (data, index) => (index * 100) )
+       .attr("y", 40)
+       .text( (data) => {
+          if (data === 1) { return "Action" } else
+          if (data === 2) { return "Drama" } else
+          if (data === 3) { return "Adventure" } else
+          if (data === 4) { return "Family" } else
+          if (data === 5) { return "Animation" } else
+          if (data === 6) { return "Comedy" } else
+          if (data === 7) { return "Biography" };
+       });
+
+  drawTooltip();
 };
 
 //Tooltip Component
