@@ -150,7 +150,6 @@ function drawTooltip(){
   const tilesArray = document.querySelectorAll('.tile');
   for(const el of tilesArray){
     el.addEventListener('mouseenter', () => {
-      console.log(el);
 
       tooltip.setAttribute("data-value", el.dataset.value); //Pass Test #TooltipTests 2 of FCC, Even though it does not affect actual function of chart
 
@@ -164,7 +163,7 @@ function drawTooltip(){
       tooltipElement.replaceChild(updatedParagraph2, tooltipElement.childNodes[1]);
 
       const updatedParagraph3 = document.createElement('p');
-      updatedParagraph3.appendChild(document.createTextNode(`Earnings: $${el.dataset.value}`));
+      updatedParagraph3.appendChild(document.createTextNode(`Earnings: $${dollarFormat(el.dataset.value)}`));
       tooltipElement.replaceChild(updatedParagraph3, tooltipElement.childNodes[2]);
 
       //Show tooltip @Desired x Position
@@ -179,4 +178,10 @@ function drawTooltip(){
       tooltip.classList.add('noVisibility');
     });
   };
+};
+
+//Turn Value into Dollar Amount
+function dollarFormat(string){
+  const num = Number(string);
+  return num.toLocaleString("en");
 };
