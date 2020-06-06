@@ -7,7 +7,7 @@
 * Scatterplot Graph [link to project](https://codepen.io/LavishLavender/full/ZEQzReb) &#x1F4D7;
 * Heat Map [link to project](https://codepen.io/LavishLavender/full/abdbMPj) &#x1F4D7;
 * Choropleth Map [link to project](https://codepen.io/LavishLavender/full/QWywqgJ) &#x1F4D7;
-* Treemap Diagram &#x1F4D9;
+* Treemap Diagram [link to project](https://codepen.io/LavishLavender/full/GRoJpgG) &#x1F4D7;
 ---
 
 __Legend:__
